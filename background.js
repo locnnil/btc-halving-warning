@@ -38,8 +38,9 @@ let looping = async function() {
     console.log("Next Halving Block: " + next_halving);
     console.log("Current Block: " + current_block);
     console.log("Remain Block: " + remain);
+    console.log("Timestamp: " + Math.ceil(Date.now()/1000));
     chrome.browserAction.setBadgeText({text: '' + remain + ''});
-    chrome.browserAction.setBadgeBackgroundColor({color: mapNumberToColor(1)});
+    chrome.browserAction.setBadgeBackgroundColor({color: '#00FF00'});
 }
 
 setInterval(looping, 5000);
