@@ -23,9 +23,12 @@ let looping = async function() {
     }
 
     const period = 210000;
-    const current_block = await getBlock();
-    
-    console.log("Value is: " + current_block);
+    let current_block; 
+    try {
+        current_block = await getBlock(); 
+    } catch (error) {
+        console.error('Error fetching block:', error);
+    }
 
     let next_halving = (Math.floor(current_block / period) + 1) * period;
     let remain = next_halving - current_block;
