@@ -1,0 +1,21 @@
+{
+    "manifest_version": 2,
+    "name": "Dynamic Icon Message",
+    "version": "1.0",
+    "permissions": ["tabs", "activeTab", "storage"],
+    "background": {
+       "scripts": ["background.js"],
+       "persistent": false
+    },
+    "browser_action": {
+       "default_icon": "img/btc16x16.png",
+       "default_title": "Dynamic Icon Message",
+       "default_popup": "index.html"
+    },
+    "icons": {
+       "16": "img/btc16x16.png",
+       "48": "img/btc48x48.png",
+       "128": "img/btc128x128.png"
+    }
+   }
+   

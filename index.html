@@ -3,89 +3,12 @@
 <head>
     <link href="favicon.ico" rel="icon" type="image/x-icon">
     <title>BTC Halving Warning</title>
-    <script src="https://www.youtube.com/iframe_api"></script>
-    <script type="text/javascript">
-        const period = 210000;
-        var remain = 0;
 
-        routine = function(){
-
-            function changeTitle(newTitle) {
-                document.title = newTitle;
-            }
-
-            let xmlhttp = new XMLHttpRequest();
-            let url = "https://mempool.space/api/v1/mining/blocks/timestamp/";
-            let time = Math.ceil(Date.now()/1000);
-            url += time;
-
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var body = JSON.parse(this.responseText);
-                    calcBlock(body);
-                }
-            };
-            xmlhttp.open("GET", url, true);
-            xmlhttp.send();
-
-            function calcBlock(obj) {
-                if (obj.height !== null && obj.height % period == 0) {
-                    alert("BTC Halving Warning: Block " + obj.height + " is coming soon!");
-                    remain = 0;
-                    return;
-                }
-                if (obj.height !== null) {
-                    let current_block = obj.height;
-                    let next_halving = (Math.floor(current_block / period) + 1) * period;
-                    remain = next_halving - current_block;
-
-                    // console.log("Next halving: " + next_halving);
-                    // console.log("Current block: " + current_block);
-                    // console.log("Blocks left: " + remain);
-                }
-                changeTitle(remain + " blocks left");
-            }
-
-        }
-        setInterval(routine, 5000);
-    </script>
 </head>
 <body>
     <h1>Welcome to BTC halving Warning</h1>
     <p>This is a simple page to warning you about Halving proximity. 
         Nothing to see here unless the Halving is extremelly close!</p>
-        
     <div id="player"></div>
-    <script>
-        // Import YouTube API script
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-       
-        // Create the YouTube Player
-        var player;
-       
-        function onYouTubeIframeAPIReady() {
-           console.log("API is Ready");
-           player = new YT.Player("video", { 
-           events:{
-             'onReady': onPlayerReady
-             } 
-           });
-        }
-       
-        function onPlayerReady() {
-           console.log("My player is onReady");
-           // Here you can add any code you want to execute when the player is ready
-        }
-        function checkVariableAndPlay(variableValue) {
-            if (variableValue === 720) {
-                player.playVideo();
-            }
-        }
-        console.log("Remain value: " + remain);
-        checkVariableAndPlay(remain);
-    </script>
 </body>
 </html>
